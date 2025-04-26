@@ -1,0 +1,42 @@
+#Build
+docker build -t DockerUbuntu-prac .
+
+#Run the container (with persistent volume)
+PS
+docker run -it --name my-ubuntu-practice -v C:\Users\deban\Documents\Docker\DockerUbuntu-prac:/mnt DockerUbuntu-prac
+
+BAsh
+docker run -it --name my-ubuntu-practice -v $HOME/DockerUbuntu-prac:/mnt DockerUbuntu-prac
+
+#Access files
+Inside container: /mnt
+
+On host machine: C:\Users\YourName\ubuntu-practice (or $HOME/ubuntu-practice)
+
+
+#--------------------------------
+docker build is used to create a custom Docker image from a Dockerfile.
+The Dockerfile is like a recipe that tells Docker:
+Which base image to use (ubuntu:latest)
+Which commands to run (apt-get install some tools)
+What settings to apply (users, environment variables)
+What to run when the container starts (like bash)
+
+docker build -t ubuntu-practice .
+
+you are telling Docker:
+Look at the current folder (.).
+Find the Dockerfile.
+Follow all the steps inside the Dockerfile.
+Create a new image called ubuntu-practice.
+
+Why not just docker run ubuntu?
+You could, but:
+You'd get a plain empty Ubuntu.
+Every time you start a new container, you'd have to manually install vim, curl, ping, etc.
+You’d waste time repeating installs.
+You wouldn't have a clean environment with your favorite tools set up.
+
+With docker build:
+You only build once.
+You can launch containers ready-to-go anytime in seconds.
