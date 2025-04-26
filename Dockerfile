@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean
 
 # Create a non-root user (optional but recommended)
-RUN useradd -ms /bin/bash admin1 && echo "admin1:admin1" | chpasswd && adduser student sudo
+RUN useradd -ms /bin/bash admin1 && echo "admin1:admin1" | chpasswd && adduser admin1 sudo
 
 # Switch to the new user
 USER admin1
