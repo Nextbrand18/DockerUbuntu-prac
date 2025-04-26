@@ -9,6 +9,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Install basic tools
 RUN apt-get update && apt-get install -y \
     sudo \
+    passwd \
     vim \
     nano \
     curl \
@@ -19,8 +20,9 @@ RUN apt-get update && apt-get install -y \
     man \
     && apt-get clean
 
+
 # Create a non-root user (optional but recommended)
-RUN useradd -ms /bin/bash admin1 && echo "admin1:admin1" | chpasswd && adduser admin1 sudo
+RUN useradd -ms /bin/bash admin1 && echo "admin1:admin1" | chpasswd && usermod -aG sudo admin1
 
 # Switch to the new user
 USER admin1
